@@ -1,12 +1,14 @@
 .habits {
-  width: 60%;
+  width: 80%;
   border-collapse: collapse;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
 }
-.habits td, .habits th {
+.habits td,
+.habits th {
   border: 2px solid #ddd;
   padding: 8px;
+  width: 5rem;
 }
 
 .habits tr:nth-child(even) {
@@ -31,4 +33,3 @@
 #bad-habits th {
   background-color: red;
 }
-

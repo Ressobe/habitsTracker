@@ -1,12 +1,4 @@
 {
-  "good_habits": [
-    {
-      "id": "test1"
-    }
-  ],
-  "bad_habits": [
-    {
-      "id": "test2"
-    }
-  ]
+  "goodHabits": [ "trening", "programowanie", "nauka"],
+  "badHabits": [ "energetyki", "alkohol", "słodycze"]
 }

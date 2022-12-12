@@ -1,28 +1,80 @@
-import week from './Date';
+import { useState } from 'react';
 
-function Habits(props) {
-  let array_week = week();
-  console.log(array_week);
+const WEEK = [
+  'Niedziela',
+  'Poniedziałek',
+  'Wtorek',
+  'Środa',
+  'Czwartek',
+  'Piątek',
+  'Sobota',
+];
+
+let number_day = new Date().getDay();
+
+function Checkboxes(index) {
+  const [checkbox, setCheckbox] = useState(true);
+
+  const updateCheckboxClicked = () => {
+    setCheckbox(!checkbox);
+  };
+
   return (
-    <table className="habits" id={props.id}>
-      <thead>
-        <tr>
-          <th>{props.type} Habits</th>
-          {array_week.map((element) => {
-            return <th>{element.getDay()}</th>;
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-      </tbody>
+    <td>
+      <input
+        type="checkbox"
+        key={index}
+        onClick={updateCheckboxClicked}
+        checked={checkbox}
+      />
+    </td>
+  );
+}
+
+function TableHead() {
+  return (
+    <thead>
+      <tr>
+        <th>Habit name</th>
+        {WEEK.map((element, index) => {
+          return (
+            <th
+              className={number_day === index ? 'today' : 'not-today'}
+              key={index}
+            >
+              {element}
+            </th>
+          );
+        })}
+      </tr>
+    </thead>
+  );
+}
+
+function TableBody({ habits }) {
+  const days = [0, 1, 2, 3, 4, 5, 6];
+
+  return (
+    <tbody>
+      {habits.map((element) => {
+        return (
+          <tr>
+            <td>{element}</td>
+            {days.map((value) => {
+              return Checkboxes(value);
+            })}
+          </tr>
+        );
+      })}
+    </tbody>
+  );
+}
+
+function Habits({ id, data }) {
+  return (
+    <table className="habits" id={id}>
+      <TableHead />
+      <TableBody habits={data} />
     </table>
   );
 }
